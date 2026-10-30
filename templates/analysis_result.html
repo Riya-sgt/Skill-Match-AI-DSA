@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Analysis report · SkillMatch AI{% endblock %}
+{% block page_heading %}Personalized analysis report{% endblock %}
+{% block content %}
+<div class="report-top"><div><div class="eyebrow">CAREER READINESS REPORT · PROFILE #{{ profile.id }}</div><h1>{{ profile.name }} <span class="muted">/</span> <span class="gradient-text">{{ job.title }}</span></h1><p>Generated from the skills saved to this profile. This report is stored in your SQLite analysis history.</p></div><a class="btn btn-secondary" href="{{ url_for('profile_detail', user_id=profile.id) }}">← Back to profile</a></div>
+<div class="report-metrics"><div class="panel score-panel"><div class="eyebrow">WEIGHTED SKILL MATCH</div><div class="huge-score">{{ result.score }}<span>%</span></div><div class="progress-track"><div class="progress-fill" style="width: {{ result.score }}%"></div></div><p>{{ result.earned_weight }} of {{ result.total_weight }} weighted skill points matched.</p></div><div class="panel metric-panel"><div class="metric-number green-text">{{ result.matched|length }}</div><b>Matched skills</b><p>Skills already present in this profile.</p></div><div class="panel metric-panel"><div class="metric-number red-text">{{ result.missing|length }}</div><b>Skills to develop</b><p>Priorities for the next learning cycle.</p></div></div>
+<div class="two-col report-columns"><section class="panel"><div class="panel-head"><div><div class="eyebrow">SKILL-BY-SKILL REVIEW</div><h2>Required skills</h2></div></div><div class="table-wrap"><table><thead><tr><th>Skill</th><th>Weight</th><th>Status</th></tr></thead><tbody>{% for d in result.details %}<tr><td>{{ d.skill }}</td><td>{{ d.weight }} pt</td><td>{% if d.matched %}<span class="status status-good">✓ Matched</span>{% else %}<span class="status status-gap">Needs learning</span>{% endif %}</td></tr>{% endfor %}</tbody></table></div></section>
+<section class="panel"><div class="panel-head"><div><div class="eyebrow">PERSONALIZED LEARNING</div><h2>Course suggestions</h2></div></div>{% if courses %}<div class="course-list">{% for c in courses %}<div class="course-item"><div class="course-icon">↗</div><div><b>{{ c.skill }}</b><p>{{ c.course }}</p><small>Suggested starting point · verify current availability</small></div></div>{% endfor %}</div>{% else %}<div class="empty-state compact"><b>Great progress!</b><p>No required skill gaps were detected for this role. Focus on projects and interview practice.</p></div>{% endif %}</section></div>
+<section class="panel roadmap-panel">
+<div class="panel-head"><div><div class="eyebrow">30-DAY DEVELOPMENT PLAN</div><h2>Your learning roadmap</h2><p class="panel-copy">Complete one practical task each day. This plan is linked to this profile and analysis, and progress is saved in the local database.</p></div><span class="roadmap-badge">30 DAYS</span></div>
+<div class="roadmap-progress-head"><strong>{{ roadmap_completed }} of 30 tasks completed</strong><span>{{ roadmap_progress }}%</span></div>
+<div class="progress-track roadmap-progress-track"><div class="progress-fill" style="width: {{ roadmap_progress }}%"></div></div>
+<div class="roadmap-grid">{% for item in roadmap %}
+<article class="roadmap-day {% if item.completed %}roadmap-day-complete{% endif %}">
+<div class="day-top"><span>DAY {{ '%02d'|format(item.day) }}</span><span class="day-dot">{% if item.completed %}✓{% endif %}</span></div>
+<div class="roadmap-phase">{{ item.phase }}</div>
+<h3>{{ item.title }}</h3>
+<div class="roadmap-focus">Focus: {{ item.skill }} · {{ item.duration }} min</div>
+<p class="roadmap-objective"><b>Learning objective</b><br>{{ item.learning_objective }}</p>
+<details class="roadmap-details">
+<summary>Daily lesson and deliverable</summary>
+<div class="roadmap-detail-block"><b>Explanation</b><p>{{ item.explanation }}</p></div>
+<div class="roadmap-detail-block"><b>Practical activity</b><p>{{ item.practical_activity }}</p></div>
+<div class="roadmap-detail-block"><b>Expected outcome</b><p>{{ item.expected_outcome }}</p></div>
+</details>
+<form method="post" action="{{ url_for('update_roadmap_task', user_id=profile.id, day=item.day) }}" class="roadmap-task-form">
+<input type="hidden" name="target_job" value="{{ job.title }}">
+<input type="hidden" name="analysis_id" value="{{ analysis_id }}">
+<button class="btn {% if item.completed %}btn-task-done{% else %}btn-task{% endif %}" type="submit" name="completed" value="{{ 0 if item.completed else 1 }}">{% if item.completed %}✓ Completed · Undo{% else %}Mark complete{% endif %}</button>
+</form>
+</article>{% endfor %}</div></section>
+<div class="bottom-actions"><a class="btn btn-primary" href="{{ url_for('analyze_profile', user_id=profile.id) }}">Analyze another career →</a><a class="btn btn-secondary" href="{{ url_for('profile_detail', user_id=profile.id) }}">View profile & history</a></div>
+{% endblock %}

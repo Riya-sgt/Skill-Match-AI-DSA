@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}{{ 'Edit' if profile else 'Create' }} profile · SkillMatch AI{% endblock %}
+{% block page_heading %}{{ 'Edit student profile' if profile else 'Create a student profile' }}{% endblock %}
+{% block content %}
+<div class="form-layout"><div class="form-intro"><div class="eyebrow">STUDENT PROFILE</div><h1>Make your skills<br><span class="gradient-text">work for you.</span></h1><p>Save education, interests and skills once. Your profile can be revisited, edited, and analyzed whenever your goals change.</p><div class="check-line">✓ <span>Persistent SQLite storage</span></div><div class="check-line">✓ <span>Skill matching and gap analysis</span></div><div class="check-line">✓ <span>Personalized course and roadmap suggestions</span></div></div>
+<form class="panel form-panel" method="post"><div class="form-title"><h2>{{ 'Update profile' if profile else 'Profile details' }}</h2><span class="required-note">* Required fields</span></div>
+<label>Full name <span>*</span><input name="name" required maxlength="100" value="{{ profile.name if profile else '' }}" placeholder="e.g. Riya Sharma"></label>
+<label>Education<input name="education" maxlength="160" value="{{ profile.education if profile else '' }}" placeholder="e.g. B.Tech CSE (AI & ML)"></label>
+<label>Career interests<input name="interests" maxlength="300" value="{{ profile.interests if profile else '' }}" placeholder="Data, design, business, problem-solving"></label>
+<label>Target career<select name="target_job"><option value="">Choose a target career</option>{% for job in jobs %}<option value="{{ job.title }}" {% if profile and profile.target_job == job.title %}selected{% endif %}>{{ job.title }}</option>{% endfor %}</select></label>
+<label>Current skills <span>*</span><textarea name="skills" rows="3" placeholder="Python, SQL, Excel, Communication" {% if not profile %}required{% endif %}>{% if profile %}{{ profile.skills|join(', ') }}{% endif %}</textarea><small>Separate skills with commas. Existing skills won't be duplicated when editing.</small></label>
+<button class="btn btn-primary btn-wide" type="submit">{{ 'Save changes' if profile else 'Save profile' }} <span>→</span></button><a class="cancel-link" href="{{ url_for('profile_detail', user_id=profile.id) if profile else url_for('dashboard') }}">Cancel</a>
+</form></div>
+{% endblock %}

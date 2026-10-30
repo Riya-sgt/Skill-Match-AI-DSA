@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Overview · SkillMatch AI{% endblock %}
+{% block page_heading %}Your career overview{% endblock %}
+{% block content %}
+<div class="hero">
+  <div class="hero-copy"><div class="pill"><span class="status-dot"></span> PERSONALIZED CAREER INTELLIGENCE</div><h1>Turn your skills into<br><span class="gradient-text">your next opportunity.</span></h1><p>Explore career matches, understand what you're missing, and follow a roadmap built around your goals.</p><a class="btn btn-primary" href="{{ url_for('create_profile') }}">＋ Create student profile <span>→</span></a></div>
+  <div class="hero-art"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="hero-core">✦</div><div class="float-card fc-one"><span class="mini-dot green"></span> Skill gap analysis <b>Ready</b></div><div class="float-card fc-two">↗ <span>Career fit</span><b>Personalized</b></div><div class="art-caption">SKILLS → OPPORTUNITY</div></div>
+</div>
+<div class="section-head"><div><div class="eyebrow">AT A GLANCE</div><h2>Platform snapshot</h2></div><span class="muted">Live counts from SQLite</span></div>
+<div class="stat-grid">
+  <div class="stat-card"><div class="stat-top"><span>Student profiles</span><span class="stat-icon">♙</span></div><div class="stat-value">{{ stats.profiles }}</div><div class="stat-foot">Saved in your local database</div></div>
+  <div class="stat-card"><div class="stat-top"><span>Career roles</span><span class="stat-icon">⌘</span></div><div class="stat-value">{{ stats.jobs }}</div><div class="stat-foot">Roles and required skills</div></div>
+  <div class="stat-card"><div class="stat-top"><span>Analyses saved</span><span class="stat-icon">◈</span></div><div class="stat-value">{{ stats.analyses }}</div><div class="stat-foot">Career reports in history</div></div>
+  <div class="stat-card"><div class="stat-top"><span>Applications</span><span class="stat-icon">↗</span></div><div class="stat-value">{{ stats.applications }}</div><div class="stat-foot">Tracked application records</div></div>
+</div>
+<div class="two-col">
+  <section class="panel"><div class="panel-head"><div><div class="eyebrow">STUDENT WORKSPACE</div><h2>Saved profiles</h2></div><a class="text-link" href="{{ url_for('create_profile') }}">+ Add profile</a></div>
+    {% if profiles %}<div class="profile-list">{% for p in profiles %}<a class="profile-row" href="{{ url_for('profile_detail', user_id=p.id) }}"><div class="profile-avatar">{{ p.name[:1]|upper }}</div><div class="profile-meta"><b>{{ p.name }}</b><span>{{ p.target_job or 'Target career not set' }} · {{ p.skills|length }} skills</span></div><span class="row-arrow">↗</span></a>{% endfor %}</div>{% else %}<div class="empty-state"><div class="empty-icon">♙</div><b>No profiles yet</b><p>Create a profile to start analyzing career matches.</p><a class="btn btn-secondary" href="{{ url_for('create_profile') }}">Create first profile</a></div>{% endif %}
+  </section>
+  <section class="panel"><div class="panel-head"><div><div class="eyebrow">RECENT ACTIVITY</div><h2>Saved analyses</h2></div></div>
+    {% if analyses %}<div class="analysis-list">{% for a in analyses %}<div class="analysis-row"><div class="analysis-symbol">↗</div><div class="analysis-meta"><b>{{ a[2] }}</b><span>{{ a[1] }} · {{ a[4] }}</span></div><div class="score-chip">{{ '%.1f'|format(a[3]) }}%</div></div>{% endfor %}</div>{% else %}<div class="empty-state"><div class="empty-icon">◈</div><b>Your reports will appear here</b><p>Run an analysis from any student profile.</p></div>{% endif %}
+  </section>
+</div>
+<div class="section-head"><div><div class="eyebrow">EXPLORE POSSIBILITIES</div><h2>Popular career paths</h2></div><a class="text-link" href="{{ url_for('jobs_page') }}">View career library →</a></div>
+<div class="career-strip">{% for job in jobs[:4] %}<div class="career-mini"><span class="career-mini-icon">{% if 'Data' in job.title %}◫{% elif 'Designer' in job.title %}✳{% elif 'Developer' in job.title %}⌘{% else %}◈{% endif %}</span><b>{{ job.title }}</b><span>{{ job.skills|length }} core skills</span></div>{% endfor %}</div>
+{% endblock %}

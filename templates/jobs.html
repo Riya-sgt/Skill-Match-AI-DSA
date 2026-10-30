@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+{% block title %}Career library · SkillMatch AI{% endblock %}
+{% block page_heading %}Career library{% endblock %}
+{% block content %}
+<div class="analysis-intro"><div class="eyebrow">EXPLORE CAREER PATHS</div><h1>Discover roles and<br><span class="gradient-text">the skills behind them.</span></h1><p>These roles are stored in SQLite and used by the existing Python matching engine.</p></div>
+<div class="job-grid">{% for job in jobs %}<article class="panel job-card"><div class="job-card-top"><span class="career-mini-icon">⌘</span><span class="job-count">{{ job.skills|length }} skills</span></div><h3>{{ job.title }}</h3><p>Required skills used for transparent profile matching and gap analysis.</p><div class="skill-tags">{% for skill in job.skills %}<span class="skill-tag">{{ skill }}</span>{% endfor %}</div></article>{% endfor %}</div>
+{% endblock %}

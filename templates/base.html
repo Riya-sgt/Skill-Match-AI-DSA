@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}SkillBridge AI{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="shell">
+  <aside class="sidebar">
+    <a class="brand" href="{{ url_for('dashboard') }}"><span class="brand-mark">S</span><span>Skill<span class="accent">Match</span><small>CAREER INTELLIGENCE</small></span></a>
+    <div class="nav-label">WORKSPACE</div>
+    <a class="nav-link {% if request.endpoint == 'dashboard' %}active{% endif %}" href="{{ url_for('dashboard') }}">▦ <span>Overview</span></a>
+    <a class="nav-link {% if request.endpoint in ['create_profile','profile_detail','edit_profile'] %}active{% endif %}" href="{{ url_for('create_profile') }}">♙ <span>Student profiles</span></a>
+    <a class="nav-link {% if request.endpoint == 'jobs_page' %}active{% endif %}" href="{{ url_for('jobs_page') }}">⌘ <span>Career library</span></a>
+    <div class="sidebar-note"><div class="note-icon">✦</div><b>Find your next step</b><p>Understand your strengths, close skill gaps, and build a practical learning plan.</p></div>
+    <div class="sidebar-foot"><span class="status-dot"></span> Local database connected</div>
+  </aside>
+  <main class="main">
+    <header class="topbar"><div><div class="eyebrow">CAREER DEVELOPMENT PLATFORM</div><div class="page-heading">{% block page_heading %}Overview{% endblock %}</div></div><a class="avatar" href="{{ url_for('create_profile') }}">＋</a></header>
+    <section class="content">
+      {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}<div class="flash-stack">{% for category,message in messages %}<div class="flash {{ category }}">{{ message }}</div>{% endfor %}</div>{% endif %}
+      {% endwith %}
+      {% block content %}{% endblock %}
+      <footer>SKILL MATCH AI <span>·</span> Python DSA + Flask + SQLite <span class="footer-right">Rule-based recommendations · Your data stays local</span></footer>
+    </section>
+  </main>
+</div>
+</body>
+</html>
