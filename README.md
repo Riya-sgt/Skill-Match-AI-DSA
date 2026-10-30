@@ -1,61 +1,79 @@
 # 🚀 SKILL MATCH AI
+
 ### Intelligent Career Recommendation & Skill Gap Analysis System
 
 **A Python-based Data Structures and Algorithms (DSA) project with a Flask web dashboard and SQLite database.**
 
-Skill Match AI is a rule-based career recommendation system that helps students and job seekers identify career opportunities based on their skills, explore matching job roles, understand skill gaps, and follow a personalized learning roadmap.
+Skill Match AI is a career recommendation system designed to help students and job seekers discover suitable career opportunities based on their skills, explore job roles, identify skill gaps, and follow personalized learning roadmaps.
 
-The system uses data structures, algorithms, skill normalization, and weighted matching techniques to generate transparent career recommendations. It combines a Python console application with a responsive Flask dashboard.
+The system uses data structures, algorithms, skill normalization, and weighted matching techniques to generate transparent career recommendations. It combines a Python console application with a responsive web dashboard.
 
-> **Project Type:** Python | DSA | Flask | SQLite  
-> **Recommendation Approach:** Rule-based and weighted skill matching  
-> **Interface:** Python Console + Web Dashboard
-
----
-
-## 📌 Table of Contents
-
-1. [Project Overview](#-project-overview)
-2. [Problem Statement](#-problem-statement)
-3. [Project Objectives](#-project-objectives)
-4. [Key Features](#-key-features)
-5. [How It Works](#-how-it-works)
-6. [Technology Stack](#-technology-stack)
-7. [DSA Concepts Implemented](#-data-structures--algorithms-implemented)
-8. [Career Matching Logic](#-career-matching-logic)
-9. [Personalized 30-Day Roadmap](#-personalized-30-day-learning-roadmap)
-10. [Database Management](#-database-management)
-11. [Project Structure](#-project-structure)
-12. [Installation and Setup](#-installation-and-setup)
-13. [Running the Application](#-running-the-application)
-14. [Running Tests](#-running-tests)
-15. [Security and Limitations](#-security-and-limitations)
-16. [Future Enhancements](#-future-enhancements)
-17. [Author](#-author)
+<p align="center">
+  <a href="https://skill-match-ai-dsa.onrender.com/"><strong>🌐 Live Demo</strong></a> •
+  <a href="https://github.com/Riya-sgt/Skill-Match-AI-DSA"><strong>💻 GitHub Repository</strong></a>
+</p>
 
 ---
 
-## 🎯 Project Overview
+## 📌 Project Information
 
-Choosing the right career can be challenging, especially for students and fresh graduates who are unsure which job roles match their current skills.
+| Detail | Description |
+|---|---|
+| Project Name | SKILL MATCH AI |
+| Project Type | Academic Project |
+| Domain | Computer Science – AI & ML |
+| Programming Language | Python |
+| Backend | Flask |
+| Database | SQLite |
+| Interface | Python Console + Web Dashboard |
+| Recommendation Approach | Rule-based weighted skill matching |
+| Deployment | Render |
+
+---
+
+## 📑 Table of Contents
+
+1. Project Overview
+2. Problem Statement
+3. Project Objectives
+4. Key Features
+5. How It Works
+6. Technology Stack
+7. DSA Concepts Implemented
+8. Career Matching Logic
+9. Personalized 30-Day Learning Roadmap
+10. Database Management
+11. Project Structure
+12. Installation and Setup
+13. Running the Application
+14. Live Deployment
+15. Running Tests
+16. Security and Limitations
+17. Future Enhancements
+18. Author
+
+---
+
+## 🎯 1. Project Overview
+
+Choosing the right career can be challenging, especially for students and fresh graduates who are unsure which job roles match their existing skills.
 
 **SKILL MATCH AI** addresses this challenge by analyzing a user's profile and comparing their skills with predefined job requirements.
 
 The system provides:
 
 - Ranked career recommendations.
-- Skill match percentages.
+- Career match percentages.
 - Matched and missing skill details.
-- Offline course-title suggestions.
+- Course-title suggestions.
 - Personalized 30-day learning roadmaps.
 - Daily learning progress tracking.
-- Reports and career analysis history.
+- Career analysis reports and history.
+- Job application management.
 
-The project demonstrates how fundamental DSA concepts can be applied to solve a practical career guidance problem.
+The project demonstrates how fundamental Data Structures and Algorithms can be applied to solve a practical career guidance problem.
 
----
-
-## ❗ Problem Statement
+## ❗ 2. Problem Statement
 
 Students and job seekers often struggle to identify suitable career opportunities because they may not know:
 
@@ -65,31 +83,27 @@ Students and job seekers often struggle to identify suitable career opportunitie
 - What they should learn to become job-ready.
 - How to organize their learning into achievable daily goals.
 
-Skill Match AI provides a structured, data-driven approach to address these challenges through skill comparison, career ranking, and personalized learning plans.
+Skill Match AI provides a structured approach to address these challenges through skill comparison, career ranking, skill-gap analysis, and personalized learning plans.
 
----
-
-## 🎯 Project Objectives
+## 🎯 3. Project Objectives
 
 1. Develop a system that recommends suitable careers based on user skills.
 2. Apply DSA concepts to manage and process career-related information.
 3. Calculate career-fit scores using transparent matching logic.
 4. Identify skill gaps between user profiles and job requirements.
-5. Suggest relevant learning resources and courses.
+5. Suggest relevant learning areas and courses.
 6. Generate personalized 30-day learning roadmaps.
 7. Store user profiles, analyses, and progress using SQLite.
 8. Provide an accessible web dashboard alongside the original console application.
 
----
-
-## ✨ Key Features
+## ✨ 4. Key Features
 
 ### 1. User Profile Management
 - Create and manage user profiles.
 - Add, view, edit, and remove skills.
 - Store education, interests, target careers, and profile information.
 - Load previously saved profiles.
-- Prevent duplicate profiles by name and duplicate skills using case-insensitive, alias-aware checks.
+- Perform case-insensitive, alias-aware checks for duplicate skills.
 
 ### 2. Career Recommendation Engine
 - Includes 20 predefined job roles.
@@ -102,11 +116,11 @@ Skill Match AI provides a structured, data-driven approach to address these chal
 - Identifies matched skills.
 - Highlights missing or underdeveloped skills.
 - Calculates career-fit percentages.
-- Helps users understand what they need to learn next.
+- Helps users identify the skills they need to improve.
 
 ### 4. Course Suggestions
 - Provides offline course-title suggestions based on skill gaps.
-- Helps users identify learning areas relevant to their selected career.
+- Identifies learning areas relevant to the selected career.
 
 ### 5. Personalized 30-Day Learning Roadmap
 - Generates exactly 30 progressive daily learning tasks.
@@ -135,35 +149,31 @@ Skill Match AI provides a structured, data-driven approach to address these chal
 
 ### 9. Data Persistence
 - Store profiles, skills, jobs, applications, and analysis history in SQLite.
-- Load saved profiles after restarting the application.
+- Load saved profiles after restarting the application when the database file is retained.
 - Persist roadmap tasks and completion progress.
 
----
+## ⚙️ 5. How It Works
 
-## ⚙️ How It Works
+The application follows this workflow:
 
-The application follows this general workflow:
-
-1. **Create Profile:** The user enters personal, educational, and career-related information.
-2. **Add Skills:** The user adds their current technical and complementary skills.
-3. **Select Career:** The user explores job roles or selects a target career.
+1. **Create Profile:** Enter personal, educational, and career-related information.
+2. **Add Skills:** Add current technical and complementary skills.
+3. **Explore Careers:** Browse available job roles or select a target career.
 4. **Analyze Skills:** The system normalizes skills and compares them with job requirements.
-5. **Calculate Match:** The weighted matching engine calculates career-fit scores.
-6. **Identify Skill Gaps:** The system displays matched and missing skills.
-7. **Generate Recommendations:** Suitable careers are ranked and displayed.
-8. **Create Roadmap:** A personalized 30-day learning plan is generated.
-9. **Track Progress:** The user marks daily tasks complete and monitors progress.
-10. **Save Results:** Profile information, analyses, and roadmap progress are stored in SQLite.
+5. **Calculate Match:** The matching engine calculates career-fit scores.
+6. **Identify Skill Gaps:** View matched and missing skills.
+7. **Get Recommendations:** Explore ranked career recommendations.
+8. **Generate Roadmap:** Receive a personalized 30-day learning plan.
+9. **Track Progress:** Mark daily tasks complete and monitor progress.
+10. **Save Results:** Store profiles, analyses, and roadmap progress in SQLite.
 
----
-
-## 🛠️ Technology Stack
+## 🛠️ 6. Technology Stack
 
 | Technology | Purpose |
 |---|---|
 | Python | Core programming language and application logic |
 | Flask | Web application framework |
-| SQLite | Database and persistent storage |
+| SQLite | Database and storage |
 | HTML | Webpage structure |
 | CSS | Styling and responsive interface |
 | JavaScript | Frontend interactions |
@@ -172,11 +182,9 @@ The application follows this general workflow:
 | Git & GitHub | Version control and project hosting |
 | unittest | Automated testing |
 
----
+## 🧠 7. Data Structures & Algorithms Implemented
 
-## 🧠 Data Structures & Algorithms Implemented
-
-This project demonstrates practical applications of fundamental data structures and algorithms.
+This project demonstrates practical applications of fundamental DSA concepts.
 
 | Concept | Application |
 |---|---|
@@ -192,9 +200,7 @@ This project demonstrates practical applications of fundamental data structures 
 
 These concepts demonstrate how DSA can be applied to organize, search, compare, and process career-related information.
 
----
-
-## 📊 Career Matching Logic
+## 📊 8. Career Matching Logic
 
 The system uses a shared weighted matching engine to calculate career-fit scores.
 
@@ -214,16 +220,15 @@ The matching engine:
 
 `(Earned Skill Points / Total Required Skill Points) × 100`
 
-By default:
-- Technical/core skills have a weight of 2.
-- Selected complementary skills have a weight of 1.
+Default weights:
+
+- Technical/core skills: 2 points.
+- Selected complementary skills: 1 point.
 - Individual job definitions may override these weights.
 
-The system uses transparent, rule-based calculations. It does **not** train a machine-learning model or claim to provide trained AI predictions.
+**Important:** The current recommendation engine uses transparent, rule-based calculations. It does not train a machine-learning model or claim to provide trained AI predictions.
 
----
-
-## 📅 Personalized 30-Day Learning Roadmap
+## 📅 9. Personalized 30-Day Learning Roadmap
 
 The roadmap generator creates a structured learning plan based on the selected career and the missing skills identified through career analysis.
 
@@ -251,35 +256,31 @@ Each daily task includes:
 
 Roadmap content can be regenerated without resetting existing completion progress for the same profile and career.
 
----
+## 🗄️ 10. Database Management
 
-## 🗄️ Database Management
-
-The application uses **SQLite** for persistent storage.
+The application uses **SQLite** for data storage.
 
 The database supports:
 
 - User profiles and profile metadata.
 - User skills.
 - Job records.
-- Saved career analysis.
+- Saved career analyses.
 - Job application history.
 - Personalized roadmap tasks.
 - Daily task completion progress.
 
 Database migrations are included for supported schema upgrades while retaining existing records.
 
-**Important:** The database file `skillmatch.db` is created automatically in the working directory when the application initializes the database.
+The database file `skillmatch.db` is created automatically in the working directory when the application initializes the database.
 
-Keep a backup of this file if you want to preserve your saved profiles and progress.
+**Important:** Keep a backup of the database file if you want to preserve saved profiles and learning progress.
 
----
-
-## 📁 Project Structure
+## 📁 11. Project Structure
 
 The project contains Python application modules, Flask routes, templates, static assets, tests, and database functionality.
 
-Main components include:
+Important components include:
 
 | Component | Responsibility |
 |---|---|
@@ -300,36 +301,32 @@ Main components include:
 | `tests/` | Automated test cases |
 | `requirements.txt` | Python dependencies |
 
-*Note: This is a component overview. Refer to the repository for the complete current folder structure.*
+*Refer to the repository for the complete current folder structure.*
 
----
-
-## 💻 Installation and Setup
+## 💻 12. Installation and Setup
 
 ### Prerequisites
 
 - Python 3.10 or newer recommended.
 - Visual Studio Code or another Python editor.
-- Git (for cloning and version control).
+- Git installed on your computer.
 - A web browser.
 
 ### Step 1: Clone the Repository
 
-```bash
-git clone https://github.com/YOUR_USERNAME/SKILL-MATCH-AI.git
-```
+Open your terminal and run:
 
-Replace `YOUR_USERNAME` with your GitHub username.
+```bash
+git clone https://github.com/Riya-sgt/Skill-Match-AI-DSA.git
+```
 
 ### Step 2: Open the Project Folder
 
 ```bash
-cd skill_match_audit
+cd Skill-Match-AI-DSA
 ```
 
-Use the actual repository folder name if it differs.
-
-### Step 3: Create a Virtual Environment (Recommended)
+### Step 3: Create a Virtual Environment
 
 ```bash
 python -m venv venv
@@ -347,19 +344,17 @@ Activate it on Windows PowerShell:
 python -m pip install -r requirements.txt
 ```
 
----
-
-## ▶️ Running the Application
+## ▶️ 13. Running the Application
 
 ### Option 1: Run the Flask Web Dashboard
 
-From the `skill_match_audit` project directory:
+From the project directory:
 
 ```bash
 python app.py
 ```
 
-Open the following address in your browser:
+Open your browser and visit:
 
 **http://127.0.0.1:5000**
 
@@ -371,15 +366,46 @@ Keep the terminal running while using the dashboard.
 python main.py
 ```
 
-The console application remains available alongside the Flask dashboard.
+The original console application remains available alongside the Flask dashboard.
 
----
+## 🌐 14. Live Deployment
 
-## 🧪 Running Tests
+The Flask web application is deployed using **Render**.
+
+<details>
+<summary><strong>Deployment information</strong></summary>
+
+| Setting | Value |
+|---|---|
+| Hosting Platform | Render |
+| Service Type | Web Service |
+| Runtime | Python 3 |
+| Build Command | `pip install -r requirements.txt` |
+| Start Command | `gunicorn app:app` |
+| Branch | `main` |
+| Root Directory | Repository root |
+
+</details>
+
+### Open the Live Application
+
+**Live Website:** https://skill-match-ai-dsa.onrender.com/
+
+**GitHub Repository:** https://github.com/Riya-sgt/Skill-Match-AI-DSA
+
+### Deployment Notes
+
+- The first request may take longer if the free Render service has been inactive.
+- The deployed application uses the server environment rather than your personal computer.
+- SQLite data stored on Render's default filesystem may not survive service restarts, redeployments, or instance replacement.
+- For reliable long-term data storage, configure persistent storage or migrate to a managed database.
+- Do not use the public demonstration application to store sensitive personal information.
+
+## 🧪 15. Running Tests
 
 The project includes automated unit tests for core functionality, database operations, skill normalization, and weighted career matching.
 
-Run the complete test suite from the `skill_match_audit` directory:
+Run the complete test suite from the project directory:
 
 ```bash
 python -m unittest discover -s tests -v
@@ -387,21 +413,18 @@ python -m unittest discover -s tests -v
 
 The test suite uses temporary databases for its tests and is designed not to modify your personal `skillmatch.db` file.
 
----
-
-## 🔐 Security and Limitations
+## 🔐 16. Security and Limitations
 
 - The recommendation engine is rule-based, not a trained machine-learning model.
 - Course suggestions are offline title-based suggestions, not live course searches.
 - The application is currently designed as a student project demonstration.
-- The Flask secret key is a development placeholder.
+- The Flask secret key requires secure production configuration.
 - Authentication and authorization are not implemented.
-- The application should not be exposed publicly with real personal data until authentication, CSRF protection, secure configuration, and deployment hardening are implemented.
-- SQLite data must be backed up before moving or replacing project databases.
+- CSRF protection and additional production security hardening should be implemented before handling real user data.
+- SQLite data on Render's default filesystem may be temporary.
+- Database backups are recommended before moving or replacing project databases.
 
----
-
-## 🚀 Future Enhancements
+## 🚀 17. Future Enhancements
 
 Potential improvements include:
 
@@ -416,18 +439,22 @@ Potential improvements include:
 - Cloud database integration.
 - Improved deployment and production security.
 
----
-
-## 👩‍💻 Author
+## 👩‍💻 18. Author
 
 **Project:** SKILL MATCH AI – Career Recommendation System  
+**Author:** Riya Malik  
 **Domain:** Computer Science Engineering – Artificial Intelligence & Machine Learning  
+**University:** SGT University  
 **Core Technologies:** Python, DSA, Flask, SQLite
 
 Developed as an academic project to demonstrate the practical application of Data Structures and Algorithms in career recommendation, skill analysis, and personalized learning.
 
 ---
 
-⭐ **If you find this project interesting, consider giving the repository a star!**
+<p align="center">
+  ⭐ If you find this project interesting, consider giving the repository a star!
+</p>
 
-*Built with Python, problem-solving, and a passion for technology.*
+<p align="center">
+  <strong>Built with Python, problem-solving, and a passion for technology. 🚀</strong>
+</p>
